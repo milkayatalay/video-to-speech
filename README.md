@@ -4,8 +4,16 @@ A tool for extracting text from speech on videos
 SpeechRecognition and MoviePy libraries used in this script.
 You need to install them first.
 
+```bash
+pip install SpeechRecognition
+```
+```bash
+pip install moviepy
+```
+
 Here is the "video-to-speech.py -h" command output
 
+```bash
 usage: video-to-speech [-h] [--slicing_amount SLICING_AMOUNT]
                      [--thread_amount THREAD_AMOUNT] [--language LANGUAGE]
                      video_path
@@ -25,5 +33,5 @@ optional arguments:
                         English,tr-TR for Turkish, click adress for more:
                         https://cloud.google.com/speech-to-text/docs/languages)
 
-example usage: video-to-speech video.mp4 --slicing_amount=25
---thread_amount=15 --language=en-EN
+example usage: video_to_speech video.mp4 --slicing_amount=25 --thread_amount=15 --language=en-EN
+```
