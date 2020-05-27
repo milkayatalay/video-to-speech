@@ -26,5 +26,5 @@ optional arguments:
                         https://cloud.google.com/speech-to-
                         text/docs/languages)
 
-example usage: speech_to_text.py video.mp4 --slicing_amount=25
+example usage: video-to-speech video.mp4 --slicing_amount=25
 --thread_amount=15 --language=en-EN
