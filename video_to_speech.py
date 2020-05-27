@@ -9,7 +9,7 @@ import time
 import datetime
 
 parser = argparse.ArgumentParser(description="A tool for extracting texts from speech videos",
-                                 epilog="example usage: speech_to_text.py video.mp4 --slicing_amount=25 "
+                                 epilog="example usage: video_to_speech video.mp4 --slicing_amount=25 "
                                         "--thread_amount=15 --language=en-EN")  # name of the app prog="some name"
 parser.add_argument("video_path", help="Source video path for extracting text")
 parser.add_argument("--slicing_amount", help="Audio slicing amount (Default: 20)", type=int)
