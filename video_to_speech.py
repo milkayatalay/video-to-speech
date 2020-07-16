@@ -50,10 +50,20 @@ def extract_audio(inpath, tarpath):
     audioforextract.write_audiofile(tarpath)
     return tarpath, audio_duration
 
+def secondsToText(secs):
+    days = secs//86400
+    hours = (secs - days*86400)//3600
+    minutes = (secs - days*86400 - hours*3600)//60
+    seconds = secs - days*86400 - hours*3600 - minutes*60
+    result = ("{}:".format(days) if days else "") + \
+    ("{}:".format(hours) if hours else "00:") + \
+    ("{}:".format(minutes) if minutes else "00:") + \
+    ("{} ".format(seconds) if seconds else "00 ")
+    return result
 
 def record_and_slice(audio_inp, audio_duration, slicing_a):
     i = 0
-    print("\nAudio duration : " + str(audio_duration) + " second\n" + "Slicing amount : " + str(
+    print("\nAudio duration : " + secondsToText(int(audio_duration)) + "second\n" + "Slicing amount : " + str(
         slicing_a) + " second\n" + "Worker thread amount : " + str(
         worker_thread_amount) + "\n\n" + "Started at : " + str(starting_time) + "\n")
     chunk_size = audio_duration / slicing_a
@@ -93,9 +103,10 @@ def wait_for_end():
 def write_list_to_file(list_for_write):
     with open(inp[:-4] + ".txt", 'w') as file_handle:
         for list_item in list_for_write:
-            file_handle.write('%s\n' % list_item[1])
+            file_handle.write('%s, %s\n' % (secondsToText(int(list_item[0])*slicing_amount ), list_item[1]))
 
         file_handle.close()
+
 
 
 executor.submit(wait_for_end)
