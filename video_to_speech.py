@@ -68,12 +68,11 @@ def record_and_slice(audio_inp, audio_duration, slicing_a):
         slicing_a) + " second\n" + "Worker thread amount : " + str(
         worker_thread_amount) + "\n\n" + "Started at : " + str(starting_time) + "\nCalculated chunk amount: " +str(int(chunk_size))+ "\n")
     audio_list = []
-    
-    while i < chunk_size:
-        with sr.AudioFile(audio_inp) as source:
+    with sr.AudioFile(audio_inp) as source:
+        while i < chunk_size:
             audio_list.append(r.record(source, slicing_a, slicing_a * i))
             print ("%"+str(int(((i+1)/chunk_size)*100))+" Chunk "+str(i+1)+" sliced")
-        i = i + 1
+            i = i + 1
 
     return audio_list
 
@@ -92,7 +91,7 @@ for obj in enumerate(record_and_slice(for_inp[0], for_inp[1], slicing_amount)):
 
 
 def wait_for_end():
-    time.sleep(20)
+    time.sleep(40)
     print("\nSorting Chunks")
     list_for_print.sort(key=lambda tup: int(tup[0]))
     print("Chunks Sorted")
