@@ -68,11 +68,12 @@ def record_and_slice(audio_inp, audio_duration, slicing_a):
         slicing_a) + " second\n" + "Worker thread amount : " + str(
         worker_thread_amount) + "\n\n" + "Started at : " + str(starting_time) + "\nCalculated chunk amount: " +str(int(chunk_size))+ "\n")
     audio_list = []
-    with sr.AudioFile(audio_inp) as source:
-        while i < chunk_size:
-            audio_list.append(r.record(source, slicing_a, slicing_a * i))
+    #with sr.AudioFile(audio_inp) as source:
+    while i < chunk_size:
+        with sr.AudioFile(audio_inp) as source:
+            audio_list.append(r.record( source, slicing_a, slicing_a * i))
             print ("%"+str(int(((i+1)/chunk_size)*100))+" Chunk "+str(i+1)+" sliced")
-            i = i + 1
+        i = i + 1
 
     return audio_list
 
